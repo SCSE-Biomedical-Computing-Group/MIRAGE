@@ -1,0 +1,53 @@
+{
+  "model": "monotonic_hgb",
+  "records": 36504,
+  "target": "rank_target",
+  "features": [
+    "foldx",
+    "rsa",
+    "struct",
+    "esm_lora_listwise",
+    "chem_hgb"
+  ],
+  "fold_models": [
+    {
+      "holdout_group": "Ang2"
+    },
+    {
+      "holdout_group": "COVID-19"
+    },
+    {
+      "holdout_group": "EGFR"
+    },
+    {
+      "holdout_group": "HER2"
+    },
+    {
+      "holdout_group": "HIV"
+    },
+    {
+      "holdout_group": "Influenza"
+    },
+    {
+      "holdout_group": "LAMP-1"
+    },
+    {
+      "holdout_group": "Lassa"
+    },
+    {
+      "holdout_group": "NGF"
+    },
+    {
+      "holdout_group": "Nipah"
+    },
+    {
+      "holdout_group": "VEGF"
+    },
+    {
+      "holdout_group": "lysozyme"
+    },
+    {
+      "holdout_group": "zika"
+    }
+  ]
+}

@@ -1,0 +1,572 @@
+{
+  "predictions": "/home2/s230112/GEPBind/runs/abagym_chem_augmented_fusion_t30_s17_s31_ranktarget/monotonic_hgb/predictions.csv",
+  "score_column": "prediction",
+  "truth_column": "DMS_score",
+  "top_fraction": 0.05,
+  "studies": 68,
+  "records": 36504,
+  "input_records": 36504,
+  "dropped_missing_records": 0,
+  "average_spearman": 0.3610019854184025,
+  "average_roc_auc": 0.763351458609284,
+  "weighted_spearman": 0.3115013507265664,
+  "weighted_roc_auc": 0.7431936528462341,
+  "by_mutated_side": {
+    "antibody": {
+      "studies": 5,
+      "average_spearman": 0.47469733436883643,
+      "average_roc_auc": 0.6687934302272855
+    },
+    "antigen": {
+      "studies": 63,
+      "average_spearman": 0.35197854502551096,
+      "average_roc_auc": 0.7708560640364267
+    }
+  },
+  "per_study": [
+    {
+      "DMS_name": "Ang2_2017_G6",
+      "DMS_on": "antibody",
+      "antigen_name": "",
+      "n": 471,
+      "spearman": 0.6264588830380471,
+      "roc_auc_top_5pct_high_score": 0.7723247576435496
+    },
+    {
+      "DMS_name": "COVID-19_2021a_AZD1061",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 395,
+      "spearman": 0.46469442167632596,
+      "roc_auc_top_5pct_high_score": 0.8703333333333333
+    },
+    {
+      "DMS_name": "COVID-19_2021a_AZD8895",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 345,
+      "spearman": 0.42053853190005946,
+      "roc_auc_top_5pct_high_score": 0.9800373768263675
+    },
+    {
+      "DMS_name": "COVID-19_2021c_C002",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 578,
+      "spearman": 0.525324581457693,
+      "roc_auc_top_5pct_high_score": 0.8692921298913384
+    },
+    {
+      "DMS_name": "COVID-19_2021c_C105",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 430,
+      "spearman": 0.4118609437313313,
+      "roc_auc_top_5pct_high_score": 0.883578431372549
+    },
+    {
+      "DMS_name": "COVID-19_2021c_C110",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 345,
+      "spearman": 0.2970386182176986,
+      "roc_auc_top_5pct_high_score": 0.646109412164458
+    },
+    {
+      "DMS_name": "COVID-19_2021c_C135",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 220,
+      "spearman": 0.4483456667296441,
+      "roc_auc_top_5pct_high_score": 0.7290126141800783
+    },
+    {
+      "DMS_name": "COVID-19_2021c_C144",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 554,
+      "spearman": 0.4551386482027752,
+      "roc_auc_top_5pct_high_score": 0.9148560564910375
+    },
+    {
+      "DMS_name": "COVID-19_2021c_CR3022",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 456,
+      "spearman": 0.36754944636017683,
+      "roc_auc_top_5pct_high_score": 0.8578672557485691
+    },
+    {
+      "DMS_name": "COVID-19_2021c_LY-CoV016",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 510,
+      "spearman": 0.6081701337092128,
+      "roc_auc_top_5pct_high_score": 0.874920534011443
+    },
+    {
+      "DMS_name": "COVID-19_2021c_LY-CoV555",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 431,
+      "spearman": 0.5591253717585396,
+      "roc_auc_top_5pct_high_score": 0.9047566125805736
+    },
+    {
+      "DMS_name": "COVID-19_2021c_REGN10933",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 385,
+      "spearman": 0.6179012210012788,
+      "roc_auc_top_5pct_high_score": 0.9526027397260274
+    },
+    {
+      "DMS_name": "COVID-19_2021c_REGN10987",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 265,
+      "spearman": 0.8051092433219402,
+      "roc_auc_top_5pct_high_score": 0.8840352874217416
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S2D106",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 470,
+      "spearman": 0.39437420701341896,
+      "roc_auc_top_5pct_high_score": 0.9125093423019432
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S2E12",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 341,
+      "spearman": 0.6599154743021297,
+      "roc_auc_top_5pct_high_score": 0.9262125902992776
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S2H13",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 338,
+      "spearman": 0.507497618152218,
+      "roc_auc_top_5pct_high_score": 0.9124060839288987
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S2H14",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 476,
+      "spearman": 0.5020604408594176,
+      "roc_auc_top_5pct_high_score": 0.803327802359882
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S2H97",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 322,
+      "spearman": 0.5004005956645848,
+      "roc_auc_top_5pct_high_score": 0.8373191899710705
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S2X259",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 430,
+      "spearman": 0.39283112459086744,
+      "roc_auc_top_5pct_high_score": 0.9304255793226381
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S2X35",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 394,
+      "spearman": 0.5285232262337604,
+      "roc_auc_top_5pct_high_score": 0.9504679144385028
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S304",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 389,
+      "spearman": 0.36894237211354014,
+      "roc_auc_top_5pct_high_score": 0.9508130081300813
+    },
+    {
+      "DMS_name": "COVID-19_2021d_S309",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 315,
+      "spearman": 0.42105338495943695,
+      "roc_auc_top_5pct_high_score": 0.9740802675585284
+    },
+    {
+      "DMS_name": "COVID-19_2022_BD55-5840",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 88,
+      "spearman": 0.2796237409535204,
+      "roc_auc_top_5pct_high_score": 0.8313253012048194
+    },
+    {
+      "DMS_name": "COVID-19_2022_C119",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 191,
+      "spearman": 0.2404367496719507,
+      "roc_auc_top_5pct_high_score": 0.3651933701657458
+    },
+    {
+      "DMS_name": "COVID-19_2022_C121",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 353,
+      "spearman": 0.49632005474083635,
+      "roc_auc_top_5pct_high_score": 0.8025704809286899
+    },
+    {
+      "DMS_name": "COVID-19_2022_COV2-2130",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 418,
+      "spearman": 0.6453758533801044,
+      "roc_auc_top_5pct_high_score": 0.9400863620007197
+    },
+    {
+      "DMS_name": "COVID-19_2022_COV2-2196",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 343,
+      "spearman": 0.30278317118262127,
+      "roc_auc_top_5pct_high_score": 0.9398290598290598
+    },
+    {
+      "DMS_name": "COVID-19_2022_COVA2-04",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 183,
+      "spearman": 0.5193793101771199,
+      "roc_auc_top_5pct_high_score": 0.849421965317919
+    },
+    {
+      "DMS_name": "COVID-19_2022_LY-CoV1404",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 112,
+      "spearman": 0.2695410196987453,
+      "roc_auc_top_5pct_high_score": 0.6430817610062893
+    },
+    {
+      "DMS_name": "COVID-19_2022_LY-CoV488",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 182,
+      "spearman": 0.46272332637758457,
+      "roc_auc_top_5pct_high_score": 0.7063953488372092
+    },
+    {
+      "DMS_name": "COVID-19_2022_WIBP-2B11",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 191,
+      "spearman": 0.28059693785054707,
+      "roc_auc_top_5pct_high_score": 0.7621546961325967
+    },
+    {
+      "DMS_name": "EGFR_2013_Cetuximab",
+      "DMS_on": "antibody",
+      "antigen_name": "",
+      "n": 659,
+      "spearman": 0.40785930247828356,
+      "roc_auc_top_5pct_high_score": 0.6550965360590573
+    },
+    {
+      "DMS_name": "HER2_2021_trastuzumab",
+      "DMS_on": "antibody",
+      "antigen_name": "",
+      "n": 146,
+      "spearman": 0.5322159844520823,
+      "roc_auc_top_5pct_high_score": 0.6463273568536727
+    },
+    {
+      "DMS_name": "HIV_2016_VRC01",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 679,
+      "spearman": 0.48853695676419995,
+      "roc_auc_top_5pct_high_score": 0.7131782945736433
+    },
+    {
+      "DMS_name": "HIV_2018_FP16-02",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 608,
+      "spearman": 0.4094504646109762,
+      "roc_auc_top_5pct_high_score": 0.9279085369262593
+    },
+    {
+      "DMS_name": "HIV_2018_FP20-01",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 665,
+      "spearman": 0.3436637390054619,
+      "roc_auc_top_5pct_high_score": 0.9298499114384264
+    },
+    {
+      "DMS_name": "HIV_2018_VRC34-01",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 513,
+      "spearman": 0.31079970487507097,
+      "roc_auc_top_5pct_high_score": 0.5889274996051177
+    },
+    {
+      "DMS_name": "HIV_2019a_3BN-1074",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 475,
+      "spearman": 0.34831438448524354,
+      "roc_auc_top_5pct_high_score": 0.7268569844789357
+    },
+    {
+      "DMS_name": "HIV_2019a_PG9",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 437,
+      "spearman": 0.2904541147382333,
+      "roc_auc_top_5pct_high_score": 0.7843373493975904
+    },
+    {
+      "DMS_name": "HIV_2019a_PGT121",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 399,
+      "spearman": 0.3253587287276023,
+      "roc_auc_top_5pct_high_score": 0.7172163588390501
+    },
+    {
+      "DMS_name": "HIV_2019a_PGT145",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 304,
+      "spearman": 0.12382851061744732,
+      "roc_auc_top_5pct_high_score": 0.662109375
+    },
+    {
+      "DMS_name": "HIV_2019a_PGT151",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 817,
+      "spearman": 0.20491257463700988,
+      "roc_auc_top_5pct_high_score": 0.710790168468695
+    },
+    {
+      "DMS_name": "HIV_2019b_106E6",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 551,
+      "spearman": 0.1691278926172398,
+      "roc_auc_top_5pct_high_score": 0.6473982518437584
+    },
+    {
+      "DMS_name": "HIV_2019b_17D4",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 475,
+      "spearman": 0.4960815650280011,
+      "roc_auc_top_5pct_high_score": 0.778039541759054
+    },
+    {
+      "DMS_name": "HIV_2019b_DF1W314",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 722,
+      "spearman": 0.3411344544301241,
+      "roc_auc_top_5pct_high_score": 0.7559676464785954
+    },
+    {
+      "DMS_name": "HIV_2019b_OPV12",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 532,
+      "spearman": 0.46504570948156543,
+      "roc_auc_top_5pct_high_score": 0.9138980564723138
+    },
+    {
+      "DMS_name": "HIV_2019b_OPV20",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 570,
+      "spearman": 0.23172547252097422,
+      "roc_auc_top_5pct_high_score": 0.6577857097329339
+    },
+    {
+      "DMS_name": "HIV_2023_1-18",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 690,
+      "spearman": 0.32196649115350173,
+      "roc_auc_top_5pct_high_score": 0.7527808069792803
+    },
+    {
+      "DMS_name": "Influenza_2018_C179",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 855,
+      "spearman": 0.21699099085297802,
+      "roc_auc_top_5pct_high_score": 0.5369028525604308
+    },
+    {
+      "DMS_name": "Influenza_2018_FI6V",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 703,
+      "spearman": 0.31797053365095246,
+      "roc_auc_top_5pct_high_score": 0.45454356155255704
+    },
+    {
+      "DMS_name": "Influenza_2018_S139",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 741,
+      "spearman": 0.1636723558381308,
+      "roc_auc_top_5pct_high_score": 0.9069776147338474
+    },
+    {
+      "DMS_name": "Influenza_2020_FI6V3-H3",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 513,
+      "spearman": 0.02883214258110989,
+      "roc_auc_top_5pct_high_score": 0.6140420154793871
+    },
+    {
+      "DMS_name": "LAMP-1_2023_FAB-B",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 399,
+      "spearman": 0.5599499135314819,
+      "roc_auc_top_5pct_high_score": 0.6243333333333334
+    },
+    {
+      "DMS_name": "Lassa_2024_121F",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 482,
+      "spearman": 0.13450033565702788,
+      "roc_auc_top_5pct_high_score": 0.6694967177242888
+    },
+    {
+      "DMS_name": "Lassa_2024_256A",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 1257,
+      "spearman": 0.12849381885631117,
+      "roc_auc_top_5pct_high_score": 0.6940256839754327
+    },
+    {
+      "DMS_name": "Lassa_2024_372D",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 967,
+      "spearman": 0.08669088531834915,
+      "roc_auc_top_5pct_high_score": 0.44791249833266633
+    },
+    {
+      "DMS_name": "Lassa_2024_377H",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 1346,
+      "spearman": 0.19249083805369066,
+      "roc_auc_top_5pct_high_score": 0.8088925711129522
+    },
+    {
+      "DMS_name": "Lassa_2024_89F",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 412,
+      "spearman": 0.3187062124918728,
+      "roc_auc_top_5pct_high_score": 0.5360492022896115
+    },
+    {
+      "DMS_name": "NGF_2018_tanezumab",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 904,
+      "spearman": 0.2462953448059031,
+      "roc_auc_top_5pct_high_score": 0.5821298266950441
+    },
+    {
+      "DMS_name": "Nipah_2024_HENV26",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 1144,
+      "spearman": -0.1363101261053641,
+      "roc_auc_top_5pct_high_score": 0.7567473169492601
+    },
+    {
+      "DMS_name": "Nipah_2024_HENV32",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 814,
+      "spearman": -0.04340242568972526,
+      "roc_auc_top_5pct_high_score": 0.7935190736124695
+    },
+    {
+      "DMS_name": "Nipah_2024_m102-4",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 1016,
+      "spearman": 0.019947860488635262,
+      "roc_auc_top_5pct_high_score": 0.5943817941684446
+    },
+    {
+      "DMS_name": "Nipah_2024_nAH1-3",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 836,
+      "spearman": 0.5421584921309311,
+      "roc_auc_top_5pct_high_score": 0.9266222861940746
+    },
+    {
+      "DMS_name": "VEGF_2017b_G6",
+      "DMS_on": "antibody",
+      "antigen_name": "",
+      "n": 513,
+      "spearman": 0.5473529770096364,
+      "roc_auc_top_5pct_high_score": 0.7049611476389719
+    },
+    {
+      "DMS_name": "lysozyme_2019_D441",
+      "DMS_on": "antibody",
+      "antigen_name": "",
+      "n": 627,
+      "spearman": 0.25959952486613275,
+      "roc_auc_top_5pct_high_score": 0.5652573529411764
+    },
+    {
+      "DMS_name": "zika_2023_EDE1-C10",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 1501,
+      "spearman": 0.09743780505109688,
+      "roc_auc_top_5pct_high_score": 0.49824099722991694
+    },
+    {
+      "DMS_name": "zika_2023_MZ4",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 741,
+      "spearman": 0.3329674061056075,
+      "roc_auc_top_5pct_high_score": 0.7129033465598563
+    },
+    {
+      "DMS_name": "zika_2023_ZV-67",
+      "DMS_on": "antigen",
+      "antigen_name": "",
+      "n": 570,
+      "spearman": 0.34367975330647227,
+      "roc_auc_top_5pct_high_score": 0.7341449423162726
+    }
+  ]
+}

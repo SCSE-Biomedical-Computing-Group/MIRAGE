@@ -1,0 +1,8 @@
+{
+  "records": 36541,
+  "templates": 68,
+  "structure_id_column": "PDB_file",
+  "features": 19,
+  "resolved_fraction": 1.0,
+  "output": "/home2/s230112/GEPBind/datasets/abagym_study_disjoint/abagym_official_structure_features.npz"
+}

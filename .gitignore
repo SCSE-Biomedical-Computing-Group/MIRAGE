@@ -1,0 +1,57 @@
+# Python/runtime noise
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Local environments and logs
+.venv/
+venv/
+env/
+wandb/
+*.log
+*.out
+*.err
+
+# Raw or large regenerated assets
+raw/
+external_data/
+checkpoints/
+models/
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.pickle
+*.joblib
+*.tar
+*.tar.gz
+*.tar.zst
+*.zip
+
+# Intermediate or regenerated experiment outputs
+results/reproduced_*/
+results/**/rescored_*
+results/**/tmp*
+
+# Keep packaged processed inputs and reproducibility tables tracked
+!data/
+!data/abagym_interface_study_rank_records.csv
+!data/abagym_official_structure_features.npz
+!data/abagym_official_structure_features.json
+!data/abagym_study_summary.csv
+!data/abagym_prepare_audit.json
+!results/
+!results/branch_predictions/
+!results/branch_predictions/four_branch_base_predictions.csv
+!results/branch_predictions/four_branch_base_summary.json
+!results/branch_predictions/chem_hgb_predictions.csv
+!results/branch_predictions/chem_hgb_summary.json
+!results/final/
+!results/final/mirage_monohgb_predictions.csv
+!results/final/mirage_monohgb_summary.json
+!results/final/mirage_monohgb_paper_metrics.json
+!results/final/mirage_monohgb_per_study_metrics.csv

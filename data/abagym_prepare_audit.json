@@ -1,0 +1,9 @@
+{
+  "interface_mutation_records": 36541,
+  "studies": 68,
+  "antigen_mutation_studies": 63,
+  "antibody_mutation_studies": 5,
+  "evaluation": "leave-one-DMS-study-out within-study ranking",
+  "target": "within-study rank of DMS_score",
+  "warning": "DMS scores are study-specific escape/enrichment endpoints, not Delta G."
+}
