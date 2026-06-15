@@ -68,7 +68,7 @@ Expected metrics:
 
 ```text
 studies: 68
-records: 36504
+records: 36541
 average_spearman: 0.3610019854184025
 average_roc_auc: 0.763351458609284
 weighted_spearman: 0.3115013507265664
