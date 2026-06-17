@@ -11,6 +11,10 @@ archived outputs needed to retrain and evaluate the final MIRAGE fusion model.
   - Scores the reproduced predictions.
   - Verifies the reproduced predictions match
     `results/final/mirage_monohgb_predictions.csv` exactly.
+- `environment.yml`
+  - Conda environment for exact final-fusion reproduction.
+- `environment-train.yml`
+  - Conda environment for optional branch-level reruns.
 
 ## Processed Data
 

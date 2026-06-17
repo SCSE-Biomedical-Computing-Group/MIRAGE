@@ -30,7 +30,14 @@ modeled structures, and downloaded ESM2 weights.
 
 ## Quick Start: Reproduce Final MIRAGE Training
 
-Install the lightweight metric/fusion dependencies:
+Install the lightweight metric/fusion dependencies with Conda:
+
+```bash
+conda env create -f environment.yml
+conda activate mirage
+```
+
+Alternatively, install with pip:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -118,6 +125,13 @@ MIRAGE/
 ## Full Branch Reruns
 
 Install the optional branch-training dependencies:
+
+```bash
+conda env create -f environment-train.yml
+conda activate mirage-train
+```
+
+Alternatively, install with pip:
 
 ```bash
 python -m pip install -r requirements-train.txt
