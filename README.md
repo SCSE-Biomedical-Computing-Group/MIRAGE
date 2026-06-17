@@ -1,7 +1,7 @@
 # MIRAGE
 
-MIRAGE is a reproducibility package for antibody-antigen DMS mutation ranking
-on AbAgym. The prediction task is **within-DMS mutation ranking**, not absolute
+MIRAGE is a training package for antibody-antigen DMS mutation ranking on
+AbAgym. The prediction task is **within-DMS mutation ranking**, not absolute
 binding free-energy regression.
 
 The final MIRAGE model is a leave-antigen-family-out monotonic
@@ -13,22 +13,7 @@ histogram-gradient-boosting calibrator over five branch scores:
 4. `esm_lora_listwise`: ESM2-LoRA listwise mutation-ranker score.
 5. `chem_hgb`: chemistry plus local-structure HGB branch score.
 
-## What This Repository Reproduces
-
-This repository supports two levels of reproducibility.
-
-**Exact final-model reproduction.**
-The included branch-score tables are sufficient to retrain the final
-five-branch MIRAGE monotonic-HGB model and reproduce the archived final
-prediction table byte-for-byte.
-
-**Branch-level reruns.**
-The branch-training scripts and processed AbAgym feature tables are included
-for inspection and reruns. Some branch regeneration requires external raw
-assets that are not stored here, such as FoldX output directories, official
-modeled structures, and downloaded ESM2 weights.
-
-## Quick Start: Reproduce Final MIRAGE Training
+## Environment
 
 Create the MIRAGE Conda environment:
 
@@ -43,45 +28,71 @@ Alternatively, install the same dependencies with pip:
 python3 -m pip install -r requirements.txt
 ```
 
-Train the final MIRAGE fusion model from the included five branch-score tables
-and verify that it exactly matches the archived result:
+## Data Included
+
+The packaged AbAgym mutation table contains 36,541 source records:
+
+```text
+data/abagym_interface_study_rank_records.csv
+```
+
+The package also includes processed local structural descriptors:
+
+```text
+data/abagym_official_structure_features.npz
+data/abagym_official_structure_features.json
+```
+
+Generated predictions and metrics are intentionally **not tracked**. They are
+written under `results/` when users run the training scripts.
+
+## Training Workflow
+
+MIRAGE training is staged. First generate branch-score tables, then train the
+final fusion model.
+
+Expected branch-score output paths:
+
+```text
+results/branch_predictions/four_branch_base_predictions.csv
+results/branch_predictions/chem_hgb_predictions.csv
+```
+
+The final fusion script consumes those two tables:
 
 ```bash
 bash scripts/reproduce_final_fusion.sh
 ```
 
-On the original server, use the existing environment:
-
-```bash
-PYTHON_BIN=/home2/s230112/envs/aapred/bin/python bash scripts/reproduce_final_fusion.sh
-```
-
-Expected output ends with:
+It writes:
 
 ```text
-MIRAGE archived-result check: PASS
-MIRAGE final-fusion training reproduction: PASS
+results/reproduced_final_fusion/monotonic_hgb/predictions.csv
+results/reproduced_final_fusion/monotonic_hgb/paper_metrics.json
+results/reproduced_final_fusion/monotonic_hgb/paper_metrics.csv
+results/reproduced_final_fusion/monotonic_hgb/summary.json
 ```
 
-## Verify Archived Final Predictions Only
-
-To rescore the archived final prediction table without retraining:
+If your branch-score files are elsewhere, set:
 
 ```bash
-bash scripts/verify_archived_results.sh
+BASE_PRED=/path/to/four_branch_base_predictions.csv \
+CHEM_PRED=/path/to/chem_hgb_predictions.csv \
+bash scripts/reproduce_final_fusion.sh
 ```
 
-Expected metrics:
+## Branch Training Inputs
 
-```text
-studies: 68
-source_records: 36541
-evaluated_records: 36504
-average_spearman: 0.3610019854184025
-average_roc_auc: 0.763351458609284
-weighted_spearman: 0.3115013507265664
-weighted_roc_auc: 0.7431936528462341
-```
+Some branches require external assets that are not stored in this repository.
+
+- FoldX branch requires the AbAgym FoldX output directory containing
+  `complex_ddG_values.csv` files.
+- RSA branch requires modeled antibody-antigen PDB structures.
+- ESM2-LoRA branch requires modeled antibody-antigen PDB structures,
+  HuggingFace/PyTorch access to `facebook/esm2_t30_150M_UR50D`, and a GPU for
+  practical runtime.
+- The chemistry branch can be rerun from the packaged records, packaged
+  structure features, and a four-branch base prediction table.
 
 ## Repository Layout
 
@@ -95,49 +106,23 @@ MIRAGE/
     abagym_prepare_audit.json
 
   scripts/
-    fit_abagym_fusion_model_zoo.py
-    score_abagym_predictions_like_paper.py
-    check_archived_metrics.py
-    verify_archived_results.sh
-    reproduce_final_fusion.sh
-
-    train_abagym_retrieval_chem_fusion.py
-    train_abagym_study_disjoint_ranknet.py
-    train_abagym_esm_adapter_ranker.py
+    prepare_abagym_study_disjoint.py
+    build_abagym_structure_features.py
     evaluate_abagym_foldx_scores.py
     evaluate_abagym_rsa_baseline.py
-    build_abagym_structure_features.py
-    prepare_abagym_study_disjoint.py
+    train_abagym_study_disjoint_ranknet.py
+    train_abagym_esm_adapter_ranker.py
+    train_abagym_retrieval_chem_fusion.py
+    fit_abagym_fusion_model_zoo.py
+    score_abagym_predictions_like_paper.py
+    reproduce_final_fusion.sh
 
   results/
     branch_predictions/
-      four_branch_base_predictions.csv
-      four_branch_base_summary.json
-      chem_hgb_predictions.csv
-      chem_hgb_summary.json
-
     final/
-      mirage_monohgb_predictions.csv
-      mirage_monohgb_summary.json
-      mirage_monohgb_paper_metrics.json
-      mirage_monohgb_per_study_metrics.csv
 ```
 
-The packaged AbAgym mutation table contains 36,541 source records. The final
-MIRAGE fusion/evaluation table contains 36,504 records after intersecting the
-source table with the available branch-score predictions.
+## Notes
 
-## Full Branch Reruns
-
-Branch reruns are intentionally separated from the exact final-fusion
-reproduction because some inputs are external:
-
-- FoldX branch requires the AbAgym FoldX output directory containing
-  `complex_ddG_values.csv` files.
-- RSA branch requires modeled antibody-antigen PDB structures.
-- ESM2-LoRA branch requires HuggingFace/PyTorch and an available ESM2
-  checkpoint, for example `facebook/esm2_t30_150M_UR50D`.
-- The chemistry branch can be rerun from the packaged records, packaged
-  structure features, and the four-branch prediction table.
-
-The final paper result is reproduced exactly by `scripts/reproduce_final_fusion.sh`.
+The final evaluated row count can be smaller than 36,541 because the final
+fusion model uses the intersection of records with all required branch scores.
