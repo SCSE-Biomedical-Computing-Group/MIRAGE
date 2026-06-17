@@ -66,7 +66,8 @@ to store in this repository:
 
 - `FOLDX_DIR`: AbAgym FoldX output directory. Each PDB subdirectory must contain
   a `complex_ddG_values.csv` file.
-- `STRUCTURE_DIR`: AbAgym modeled antibody-antigen PDB structures.
+- `STRUCTURE_DIR`: AbAgym modeled antibody-antigen PDB structures, named by
+  the `PDB_file` column in `data/abagym_interface_study_rank_records.csv`.
 - HuggingFace/PyTorch access to `facebook/esm2_t30_150M_UR50D`, unless the
   model is already cached locally. Set `ESM_LOCAL_FILES_ONLY=1` to force local
   cache use.
@@ -79,6 +80,7 @@ PYTHON_BIN=/path/to/python
 RESULTS_DIR=results
 DEVICE=cuda:0
 ESM_MODEL_NAME=facebook/esm2_t30_150M_UR50D
+STRUCTURE_ID_COLUMN=PDB_file
 SAVE_ESM_CHECKPOINTS=1
 ```
 

@@ -82,15 +82,15 @@ def mutate_sequence(sequence: str, position: int, mutation: str) -> str:
     return sequence[:position] + mutation + sequence[position + 1 :]
 
 
-def load_models(structure_dir: Path, records: pd.DataFrame) -> dict[str, object]:
+def load_models(structure_dir: Path, records: pd.DataFrame, structure_id_column: str) -> dict[str, object]:
     parser = PDBParser(QUIET=True)
-    available = {path.stem: path for path in structure_dir.rglob("*.pdb")}
+    available = {path.stem.lower(): path for path in structure_dir.rglob("*.pdb")}
     models = {}
-    for pdb_file in sorted(records["PDB_file"].astype(str).unique()):
-        path = available.get(pdb_file)
+    for structure_id in sorted(records[structure_id_column].astype(str).str.lower().unique()):
+        path = available.get(structure_id)
         if path is None:
-            raise FileNotFoundError(f"Missing structure for {pdb_file}")
-        models[pdb_file] = next(parser.get_structure(pdb_file, str(path)).get_models())
+            raise FileNotFoundError(f"Missing structure for {structure_id}")
+        models[structure_id] = next(parser.get_structure(structure_id, str(path)).get_models())
     return models
 
 
@@ -145,15 +145,21 @@ def load_npz(path: Path, expected: int) -> tuple[np.ndarray, list[str]]:
     return x, [str(x) for x in payload["names"].tolist()]
 
 
-def build_mutant_contexts(records: pd.DataFrame, structure_dir: Path, max_residues: int) -> tuple[list[str], np.ndarray]:
-    models = load_models(structure_dir, records)
+def build_mutant_contexts(
+    records: pd.DataFrame,
+    structure_dir: Path,
+    max_residues: int,
+    structure_id_column: str,
+) -> tuple[list[str], np.ndarray]:
+    models = load_models(structure_dir, records, structure_id_column)
     resolved: dict[tuple[str, str, str], tuple[str, int]] = {}
     sequences: list[str] = []
     positions: list[int] = []
     for row in records.itertuples(index=False):
-        key = (str(row.PDB_file), str(row.chains), str(row.site))
+        structure_id = str(getattr(row, structure_id_column, row.PDB_file)).lower()
+        key = (structure_id, str(row.chains), str(row.site))
         if key not in resolved:
-            resolved[key] = chain_sequence_and_position(models[str(row.PDB_file)], chain_ids(row.chains), row.site)
+            resolved[key] = chain_sequence_and_position(models[structure_id], chain_ids(row.chains), row.site)
         sequence, position = centered_crop(*resolved[key], maximum_residues=max_residues)
         sequences.append(mutate_sequence(sequence, position, str(row.mutation)))
         positions.append(position)
@@ -561,6 +567,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--records", type=Path, required=True)
     parser.add_argument("--structure-dir", type=Path, required=True)
+    parser.add_argument("--structure-id-column", default="PDB_file")
     parser.add_argument("--structure-features", type=Path, default=None)
     parser.add_argument("--out-dir", type=Path, required=True)
     parser.add_argument("--model-name", default="facebook/esm2_t30_150M_UR50D")
@@ -613,7 +620,7 @@ def main() -> None:
         frame = frame.head(args.limit).copy()
     frame = frame.reset_index(drop=True)
     print("building mutation-centered ESM inputs", flush=True)
-    sequences, positions = build_mutant_contexts(frame, args.structure_dir, args.max_residues)
+    sequences, positions = build_mutant_contexts(frame, args.structure_dir, args.max_residues, args.structure_id_column)
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, local_files_only=args.local_files_only)
     tensors = tokenize_contexts(tokenizer, sequences, args.max_residues)
     scalar, scalar_names = scalar_features(frame)

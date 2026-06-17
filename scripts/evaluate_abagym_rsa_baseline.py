@@ -49,6 +49,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--records", type=Path, required=True)
     ap.add_argument("--structure-dir", type=Path, required=True)
+    ap.add_argument("--structure-id-column", default="PDB_file")
     ap.add_argument("--out-dir", type=Path, required=True)
     args = ap.parse_args()
     args.out_dir.mkdir(parents=True, exist_ok=True)
@@ -59,13 +60,16 @@ def main() -> None:
     for path in args.structure_dir.rglob("*.pdb"):
         structure = parser.get_structure(path.stem, str(path))
         sr.compute(structure, level="R")
-        models[path.stem] = next(structure.get_models())
+        models[path.stem.lower()] = next(structure.get_models())
     asa_cache = {}
     rows = []
     for row in records.itertuples(index=False):
-        key = (str(row.PDB_file), str(row.chains), str(row.site))
+        structure_id = str(getattr(row, args.structure_id_column, row.PDB_file)).lower()
+        key = (structure_id, str(row.chains), str(row.site))
         if key not in asa_cache:
-            residue = locate_residue(models[str(row.PDB_file)], chain_ids(row.chains), row.site)
+            if structure_id not in models:
+                raise KeyError(f"Cannot find structure {structure_id} from column {args.structure_id_column}")
+            residue = locate_residue(models[structure_id], chain_ids(row.chains), row.site)
             asa = float(getattr(residue, "sasa", 0.0))
             rsa = asa / MAX_ASA.get(residue.resname, np.nan)
             asa_cache[key] = (asa, rsa)
@@ -89,6 +93,7 @@ def main() -> None:
     audit = {
         "records": int(len(output)),
         "resolved_site_contexts": int(len(asa_cache)),
+        "structure_id_column": args.structure_id_column,
         "prediction": "-absolute residue SASA in complex; larger score means less exposed/more buried",
     }
     (args.out_dir / "summary.json").write_text(json.dumps(audit, indent=2) + "\n")

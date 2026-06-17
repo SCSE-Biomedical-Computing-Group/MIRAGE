@@ -19,7 +19,16 @@ The FoldX scoring script joins rows using the AbAgym `PDB_file` and
 ## Modeled Antibody-Antigen Structures
 
 Set `STRUCTURE_DIR` to the directory containing the AbAgym modeled
-antibody-antigen PDB structures. These structures are used by:
+antibody-antigen PDB structures. The expected files are named by the
+`PDB_file` column in `data/abagym_interface_study_rank_records.csv`, for
+example:
+
+```text
+G6_27_30A_corrected_4zfg.pdb
+AZD1061_7l7e.pdb
+```
+
+These structures are used by:
 
 - `scripts/evaluate_abagym_rsa_baseline.py`
 - `scripts/train_abagym_esm_adapter_ranker.py`

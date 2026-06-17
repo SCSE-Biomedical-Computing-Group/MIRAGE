@@ -21,6 +21,7 @@ DEVICE="${DEVICE:-cuda:0}"
 
 FOLDX_DIR="${FOLDX_DIR:-}"
 STRUCTURE_DIR="${STRUCTURE_DIR:-}"
+STRUCTURE_ID_COLUMN="${STRUCTURE_ID_COLUMN:-PDB_file}"
 ESM_MODEL_NAME="${ESM_MODEL_NAME:-facebook/esm2_t30_150M_UR50D}"
 ESM_LOCAL_FILES_ONLY="${ESM_LOCAL_FILES_ONLY:-0}"
 SAVE_ESM_CHECKPOINTS="${SAVE_ESM_CHECKPOINTS:-0}"
@@ -60,6 +61,7 @@ echo "[2/7] RSA solvent-exposure branch"
 "${PYTHON_BIN}" scripts/evaluate_abagym_rsa_baseline.py \
   --records "${RECORDS}" \
   --structure-dir "${STRUCTURE_DIR}" \
+  --structure-id-column "${STRUCTURE_ID_COLUMN}" \
   --out-dir "${BRANCH_DIR}/rsa_baseline"
 
 echo "[3/7] Learned structural-context branch"
@@ -84,6 +86,7 @@ fi
 "${PYTHON_BIN}" scripts/train_abagym_esm_adapter_ranker.py \
   --records "${RECORDS}" \
   --structure-dir "${STRUCTURE_DIR}" \
+  --structure-id-column "${STRUCTURE_ID_COLUMN}" \
   --structure-features "${STRUCTURE_FEATURES}" \
   --out-dir "${BRANCH_DIR}/esm_lora_listwise" \
   --model-name "${ESM_MODEL_NAME}" \
