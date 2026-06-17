@@ -46,7 +46,43 @@ data/abagym_official_structure_features.json
 Generated predictions and metrics are intentionally **not tracked**. They are
 written under `results/` when users run the training scripts.
 
-## Training Workflow
+## Train From Scratch
+
+The complete training workflow is available as a single shell script:
+
+```bash
+FOLDX_DIR=/path/to/abagym_foldx_outputs \
+STRUCTURE_DIR=/path/to/abagym_modeled_pdbs \
+DEVICE=cuda:0 \
+bash scripts/train_mirage_from_scratch.sh
+```
+
+This script trains the five MIRAGE branches and then trains/evaluates the final
+monotonic HGB fusion model. It writes branch outputs to
+`results/branch_predictions/` and final outputs to `results/final/`.
+
+The full run requires external assets that are too large or license-dependent
+to store in this repository:
+
+- `FOLDX_DIR`: AbAgym FoldX output directory. Each PDB subdirectory must contain
+  a `complex_ddG_values.csv` file.
+- `STRUCTURE_DIR`: AbAgym modeled antibody-antigen PDB structures.
+- HuggingFace/PyTorch access to `facebook/esm2_t30_150M_UR50D`, unless the
+  model is already cached locally. Set `ESM_LOCAL_FILES_ONLY=1` to force local
+  cache use.
+- A CUDA GPU is strongly recommended for the ESM2-LoRA branch.
+
+Optional environment variables:
+
+```bash
+PYTHON_BIN=/path/to/python
+RESULTS_DIR=results
+DEVICE=cuda:0
+ESM_MODEL_NAME=facebook/esm2_t30_150M_UR50D
+SAVE_ESM_CHECKPOINTS=1
+```
+
+## Staged Training Workflow
 
 MIRAGE training is staged. First generate branch-score tables, then train the
 final fusion model.
@@ -84,6 +120,7 @@ bash scripts/reproduce_final_fusion.sh
 ## Branch Training Inputs
 
 Some branches require external assets that are not stored in this repository.
+See `EXTERNAL_ASSETS.md` for the expected directory layout.
 
 - FoldX branch requires the AbAgym FoldX output directory containing
   `complex_ddG_values.csv` files.
@@ -98,6 +135,7 @@ Some branches require external assets that are not stored in this repository.
 
 ```text
 MIRAGE/
+  EXTERNAL_ASSETS.md
   data/
     abagym_interface_study_rank_records.csv
     abagym_official_structure_features.npz
@@ -113,8 +151,10 @@ MIRAGE/
     train_abagym_study_disjoint_ranknet.py
     train_abagym_esm_adapter_ranker.py
     train_abagym_retrieval_chem_fusion.py
+    build_mirage_branch_tables.py
     fit_abagym_fusion_model_zoo.py
     score_abagym_predictions_like_paper.py
+    train_mirage_from_scratch.sh
     reproduce_final_fusion.sh
 
   results/

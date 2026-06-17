@@ -10,6 +10,9 @@ files are intentionally not tracked.
   - Conda environment for MIRAGE training and evaluation.
 - `requirements.txt`
   - Pip dependency list for the same workflow.
+- `EXTERNAL_ASSETS.md`
+  - Required external FoldX, PDB-structure, and ESM2 model assets for full
+    train-from-scratch reproduction.
 
 ## Processed Data
 
@@ -43,10 +46,16 @@ files are intentionally not tracked.
   - ESM2-LoRA branch training script.
 - `scripts/train_abagym_retrieval_chem_fusion.py`
   - Chemistry/local-structure branch training script.
+- `scripts/build_mirage_branch_tables.py`
+  - Utility that merges FoldX, RSA, structural, and ESM2-LoRA branch
+    predictions into the four-branch base table required by MIRAGE fusion.
 - `scripts/fit_abagym_fusion_model_zoo.py`
   - Final fusion training script.
 - `scripts/score_abagym_predictions_like_paper.py`
   - Evaluation script.
+- `scripts/train_mirage_from_scratch.sh`
+  - End-to-end training wrapper for the FoldX, RSA, structural, ESM2-LoRA,
+    chemistry, and final monotonic-HGB fusion stages.
 - `scripts/reproduce_final_fusion.sh`
   - Convenience wrapper for final fusion training and evaluation once branch
     score tables have been generated.
