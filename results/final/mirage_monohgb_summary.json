@@ -1,5 +1,6 @@
 {
   "model": "monotonic_hgb",
+  "source_records": 36541,
   "records": 36504,
   "target": "rank_target",
   "features": [

@@ -21,6 +21,7 @@ archived outputs needed to retrain and evaluate the final MIRAGE fusion model.
 - `data/abagym_interface_study_rank_records.csv`
   - Standardized AbAgym mutation records with DMS scores, rank targets,
     mutation identity, DMS metadata, and antigen-family split labels.
+  - Contains 36,541 source records.
 - `data/abagym_official_structure_features.npz`
   - 19-dimensional local structural descriptors used by learned structural
     and chemistry branches.
@@ -46,6 +47,8 @@ fusion model exactly.
 
 - `results/final/mirage_monohgb_predictions.csv`
   - Archived final MIRAGE predictions.
+  - Contains 36,504 evaluated records after intersection with available
+    branch-score predictions.
 - `results/final/mirage_monohgb_summary.json`
   - Final model summary.
 - `results/final/mirage_monohgb_paper_metrics.json`

@@ -75,7 +75,8 @@ Expected metrics:
 
 ```text
 studies: 68
-records: 36541
+source_records: 36541
+evaluated_records: 36504
 average_spearman: 0.3610019854184025
 average_roc_auc: 0.763351458609284
 weighted_spearman: 0.3115013507265664
@@ -121,6 +122,10 @@ MIRAGE/
       mirage_monohgb_paper_metrics.json
       mirage_monohgb_per_study_metrics.csv
 ```
+
+The packaged AbAgym mutation table contains 36,541 source records. The final
+MIRAGE fusion/evaluation table contains 36,504 records after intersecting the
+source table with the available branch-score predictions.
 
 ## Full Branch Reruns
 
