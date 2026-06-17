@@ -30,14 +30,14 @@ modeled structures, and downloaded ESM2 weights.
 
 ## Quick Start: Reproduce Final MIRAGE Training
 
-Install the lightweight metric/fusion dependencies with Conda:
+Create the MIRAGE Conda environment:
 
 ```bash
 conda env create -f environment.yml
 conda activate mirage
 ```
 
-Alternatively, install with pip:
+Alternatively, install the same dependencies with pip:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -128,19 +128,6 @@ MIRAGE fusion/evaluation table contains 36,504 records after intersecting the
 source table with the available branch-score predictions.
 
 ## Full Branch Reruns
-
-Install the optional branch-training dependencies:
-
-```bash
-conda env create -f environment-train.yml
-conda activate mirage-train
-```
-
-Alternatively, install with pip:
-
-```bash
-python -m pip install -r requirements-train.txt
-```
 
 Branch reruns are intentionally separated from the exact final-fusion
 reproduction because some inputs are external:

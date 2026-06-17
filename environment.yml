@@ -7,3 +7,8 @@ dependencies:
   - pandas=2.3
   - scipy=1.13
   - scikit-learn=1.6
+  - biopython=1.85
+  - pip
+  - pip:
+      - torch>=2.1
+      - transformers==4.35.2
